@@ -15,7 +15,7 @@ function generateRandomColors(length: number): string[] {
   ];
 
   return Array.from({ length }, () => {
-    const variation = 250; // Adjust this value to control the color variation
+    const variation = 150; // Adjust this value to control the color variation
     const color = baseColor.map(component => (
       Math.min(255, Math.max(0, component + Math.floor(Math.random() * variation - variation / 2)))
     ));
@@ -53,10 +53,15 @@ function Home() {
   }, [width, height]);
 
   const generateNewTiles = () => {
-    const tileSize = Math.floor(10 * (height / width));
+    const ratio = Math.min(width / height, height / width, 1);
+    let tileSize = Math.floor(8 * ratio);
+    if (tileSize * tileSize % 2 === 1) {
+      tileSize++;
+    }
     setTiles({ x: tileSize, y: tileSize });
     setForceUpdate((prev) => !prev);
   };
+
 
   const colorPairs = useMemo(() => {
     const randomColors = generateRandomColors((tiles.x * tiles.y) / 2);
@@ -95,7 +100,6 @@ function Home() {
       }
     }
 
-    // Verificar si se han encontrado todas las parejas
     if (newSelecteds.filter((selected) => selected).length === tiles.x * tiles.y) {
       setEndTime(Date.now());
     }
@@ -106,7 +110,6 @@ function Home() {
   };
 
   const handleShareClick = () => {
-    // Lógica para compartir en redes sociales
     console.log('Compartir en redes sociales');
   };
 
