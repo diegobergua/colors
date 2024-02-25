@@ -120,21 +120,33 @@ function Home() {
 
   return (
     <div className="Home">
-      {endTime !== null && <Slide><Popup timeResult={timeResult} onRetryClick={handleRetryClick} onShareClick={handleShareClick} /></Slide>}
-      {colors.map((rowColors, i) => (
-        <div style={{ display: 'flex' }} key={i}>
-          {rowColors.map((color, j) => (
-            <Tile
-              size={size}
-              color={color}
-              onTileClick={handleTileClick}
-              id={Number(i + '' + j)}
-              selected={selecteds[Number(i + '' + j)]}
-              key={Number(i + '' + j)}
+      {endTime !== null && (
+        <Slide>
+          <div style={{ height: '100vh', backgroundColor: '#000'}}>
+            <Popup
+              timeResult={timeResult}
+              onRetryClick={handleRetryClick}
+              onShareClick={handleShareClick}
             />
-          ))}
-        </div>
-      ))}
+          </div>
+        </Slide>
+      )}
+      {endTime === null && (<div>
+        {colors.map((rowColors, i) => (
+          <div style={{ display: 'flex' }} key={i}>
+            {rowColors.map((color, j) => (
+              <Tile
+                size={size}
+                color={color}
+                onTileClick={handleTileClick}
+                id={Number(i + '' + j)}
+                selected={selecteds[Number(i + '' + j)]}
+                key={Number(i + '' + j)}
+              />
+            ))}
+          </div>
+        ))}
+      </div>)}
     </div>
   );
 }
