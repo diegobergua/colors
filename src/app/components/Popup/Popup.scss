@@ -1,0 +1,41 @@
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.congrats-msg {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.time-result {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.share-btn,
+.retry-btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.share-btn {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+}
+
+.retry-btn {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+}
