@@ -53,12 +53,16 @@ function Home() {
   }, [width, height]);
 
   const generateNewTiles = () => {
-    const ratio = Math.min(width / height, height / width, 1);
-    let tileSize = Math.floor(8 * ratio);
-    if (tileSize * tileSize % 2 === 1) {
-      tileSize++;
+
+    let xTiles, yTiles;
+    if(width>height) {
+      yTiles = 4;
+      xTiles = Math.floor(yTiles * (width / height));
+    }else{
+      xTiles = 4;
+      yTiles = Math.floor(xTiles * (height / width ));
     }
-    setTiles({ x: tileSize, y: tileSize });
+    setTiles({ x: xTiles, y: yTiles });
     setForceUpdate((prev) => !prev);
   };
 
